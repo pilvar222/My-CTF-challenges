@@ -1,0 +1,6 @@
+[submodule "SHC22_web_hard"]
+	path = SHC22_web_hard
+	url = https://github.com/pilvar222/SHC22_web_hard
+[submodule "quals/web-clob-mate"]
+	path = quals/web-clob-mate
+	url = https://github.com/polygl0ts/lakectf-2022/
