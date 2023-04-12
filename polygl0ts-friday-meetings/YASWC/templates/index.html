@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>YASWC Image viewer</title>
+<style type="text/css">
+	body {
+		background-color: beige;
+	}
+</style>
+</head>
+<body>
+	<h1>YASWC Image viewer</h1>
+	<p>Click on one of the images to view it!</p>
+	<ul>
+		{% for file in files %}
+		<li><a href="/?file={{file}}">{{file}}</a></li>
+		{% endfor %}
+<img src="/view?file={{file}}">
+</body>
+</html>

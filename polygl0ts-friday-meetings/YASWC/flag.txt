@@ -1,0 +1,1 @@
+web{challenge name stands for "Yet Another Sourceless Web Challenge", they're not necessarily bad, but there's a ton of awful ones}
