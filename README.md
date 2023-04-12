@@ -20,7 +20,7 @@ Write-ups available.<br />
   difficulty: ~4/10
 * Bad_Mitigations,
   difficulty: ~5/10
-<br />
+
 ### web-clob-mate
 Web challenge about DOM clobbering.<br />
 Created for the LakeCTF 2022 qualifications<br />
