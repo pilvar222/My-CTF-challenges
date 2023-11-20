@@ -1,3 +1,5 @@
+List of CTF challenges I created. Sorted from oldest to latest.
+
 | CTF                                              | challenge name                | estimated difficulty | writeup                                                                                                                  |
 | ------------------------------------------------ | ----------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | SHC2022                                          | web hard                      | medium-hard          | none                                                                                                                     |
@@ -7,7 +9,7 @@
 | polygl0ts friday meetings - intro to web hacking | YASWC                         | medium-easy          | [https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf](https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf)|
 | polygl0ts friday meetings - intro to web hacking | Bad Mitigations               | medium               | [https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf](https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf)|
 | LakeCTF2022 finals                               | Lake's Hangout                | hard                 | none                                                                                                                     |
-| SHC2023                                          | facial-recognition            | medium-hard          | none, challenge is still public ;)                                                                                       |
+| SHC2023                                          | facial-recognition            | medium         | none, challenge is still public ;)                                                                                       |
 | polygl0ts friday meetings - intro to web hacking | requestsGobrrrrrrrrrrrrrrrrr  | medium-easy          | none                                                                                                                     |
 | polygl0ts friday meetings - intro to web hacking | SeriouslyQuestionableLanguage | medium-easy          | none                                                                                                                     |
 | LakeCTF2023 quals                                | digestif                      | easy                 | none                                                                                                                     |
