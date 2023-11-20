@@ -1,0 +1,6 @@
+services:
+  web:
+    build: .
+    ports:
+      - "9004:9004"
+    restart: always

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .flag {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ user }}!</h1>
+    {% if user == "admin" %}
+        <p class="flag">Here is your flag: friday{H0w_d1D_y0u_g3t_th3_S3cr3t?} </p>
+    {% else %}
+        <p>You are not admin!</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,5 @@
+ngrok
+Flask
+python-socketio
+beautifulsoup4
+requests

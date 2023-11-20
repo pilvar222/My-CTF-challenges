@@ -1,0 +1,24 @@
+services:
+  https-proxy:
+    image: nginxproxy/nginx-proxy
+    ports:
+      - "9011:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+    environment:
+      - "HSTS=off"
+  web:
+    build: .
+    init: true
+    environment:
+      - "PREMIUM_PIN=351-483-113"
+      - "FLAG=EPFL{as a wise man once said, https://twitter.com/arkark_/status/1712773241218183203}"
+      - "LATLON=60.792937,11.100984"
+      - "VIRTUAL_HOST=chall.polygl0ts.ch"
+      - "VIRTUAL_PORT=9011"
+      - "CHALL_URL=https://chall.polygl0ts.ch:9011"
+    extra_hosts:
+      - "a.tile.openstreetmap.org:127.0.0.1" # avoid unncessary req to openstreetmap from bot
+      - "b.tile.openstreetmap.org:127.0.0.1"
+      - "c.tile.openstreetmap.org:127.0.0.1"

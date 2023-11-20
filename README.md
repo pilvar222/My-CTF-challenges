@@ -1,32 +1,14 @@
-# My-CTF-challenges
-This repo contains a list of the CTF challenges I created.<br />
-
-### SHC22_web_hard
-Web challenge about CSS exfiltration.<br />
-Created for the Swiss Hacking Challenge 2022 finales.<br />
-difficulty: ~7/10<br />
-
-### polygl0ts-friday-meetings
-Various beginner web challenges. Contains various commonly seen concepts in CTF.<br />
-Created as part of the introduction to web hacking presented for Polygl0ts, Spring 2023.<br />
-Write-ups available.<br />
-
-##### Challenges:
-* Methodology,
-  difficulty: ~2/10
-* Super Secure Admin Panel,
-  difficulty: ~3/10
-* YASWC,
-  difficulty: ~4/10
-* Bad_Mitigations,
-  difficulty: ~5/10
-
-### web-clob-mate
-Web challenge about DOM clobbering.<br />
-Created for the LakeCTF 2022 qualifications<br />
-difficulty: ~7/10<br />
-Write-up available.<br />
-
-### web-lakes-hangout
-Web challenge about XS leak.<br />
-difficulty: ~8/10
+| CTF                                              | challenge name                | estimated difficulty | writeup                                                                                                                  |
+| ------------------------------------------------ | ----------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| SHC2022                                          | web hard                      | medium-hard          | none                                                                                                                     |
+| LakeCTF2022 quals                                | Clob Mate                     | hard                 | [https://ctf.zeyu2001.com/2022/lakectf-qualifiers/clob-mate](https://ctf.zeyu2001.com/2022/lakectf-qualifiers/clob-mate) |
+| polygl0ts friday meetings - intro to web hacking | Methodology                   | very easy            | [https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf](https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf) |
+| polygl0ts friday meetings - intro to web hacking | Super Secure Admin Panel      | easy                 | [https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf](https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf)|
+| polygl0ts friday meetings - intro to web hacking | YASWC                         | medium-easy          | [https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf](https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf)|
+| polygl0ts friday meetings - intro to web hacking | Bad Mitigations               | medium               | [https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf](https://github.com/pilvar222/My-CTF-challenges/blob/main/polygl0ts-friday-meetings/writeups.pdf)|
+| LakeCTF2022 finals                               | Lake's Hangout                | hard                 | none                                                                                                                     |
+| SHC2023                                          | facial-recognition            | medium-hard          | none, challenge is still public ;)                                                                                       |
+| polygl0ts friday meetings - intro to web hacking | requestsGobrrrrrrrrrrrrrrrrr  | medium-easy          | none                                                                                                                     |
+| polygl0ts friday meetings - intro to web hacking | SeriouslyQuestionableLanguage | medium-easy          | none                                                                                                                     |
+| LakeCTF2023 quals                                | digestif                      | easy                 | none                                                                                                                     |
+| LakeCTF2023 quals                                | GeoGuessy                     | hard                 | [https://www.xanhacks.xyz/p/lakectf2023-geoguessy/](https://www.xanhacks.xyz/p/lakectf2023-geoguessy/)                   |

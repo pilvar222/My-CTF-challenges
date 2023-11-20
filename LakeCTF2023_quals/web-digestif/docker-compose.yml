@@ -1,0 +1,5 @@
+services:
+  web-digestif:
+    build: .
+    ports:
+      - 9009:80
