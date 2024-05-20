@@ -1,0 +1,18 @@
+services:
+  redis:
+    image: "redis:7.2.4-alpine"
+  doc-web:
+    build: ./doc-web/
+    ports:
+      - "12002:3000"
+    environment:
+      - SECRET_KEY_BASE=bbf60bf4fe37ff105fea9bab72f631f6f7696e89484aced7eb72d4157f4ba7031602026fe2d004060134b7794a6be5152387250a615f74598206fd12014d6404
+  doc-bot:
+    build: ./doc-bot/
+    shm_size: 2gb
+    ports:
+      - "12003:4000"
+    depends_on:
+      - redis
+    environment:
+      - FLAG=EPFL{fake_flag}

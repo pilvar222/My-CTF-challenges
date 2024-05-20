@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+    <script>
+        handlePost = () => {
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            fetch('/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, content })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    window.location.href = '/posts/'+data.postId;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        window.onload = () => {
+        document.querySelector('form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            handlePost();
+        });
+        }
+        </script>
+    <style>
+        body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/77/An_evening_fishing_-_by_Francis_Hannaway.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        p {
+            text-align: center;
+        }
+        a {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>New Post</h1>
+    <form action="/posts" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
+        <button type="submit">Create Post</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script>
+        handleRegister = () => {
+            const username = document.getElementById('username').value;
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    window.location.href = '/login#' + data.password;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        window.onload = () => {
+        document.querySelector('form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            handleRegister();
+        });
+        }
+        </script>
+            <style>
+                body {
+                    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/77/An_evening_fishing_-_by_Francis_Hannaway.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    font-family: Arial, sans-serif;
+                    color: white;
+                    padding: 20px;
+                }
+                h1 {
+                    text-align: center;
+                }
+                p {
+                    text-align: center;
+                }
+                a {
+                    display: block;
+                    width: fit-content;
+                    margin: 20px auto;
+                    padding: 10px 20px;
+                    background-color: #007bff;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    text-align: center;
+                }
+                a:hover {
+                    background-color: #0056b3;
+                }
+            </style>
+</head>
+<body>
+    <h1>Register</h1>
+    <form action="/register" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

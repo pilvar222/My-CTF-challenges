@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+<script>
+promote = () => {
+            const username = document.getElementById('author').innerText;
+            fetch('/moderator/promote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, permission:"moderator" })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert("User promoted to moderator!");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+approve = () => {
+            const username = document.getElementById('author').innerText;
+            fetch('', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ not_a_csrf:true })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert("Post approved!");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+</script>
+<style>
+    body {
+        background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/77/An_evening_fishing_-_by_Francis_Hannaway.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+        color: white;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+    }
+    a {
+        display: block;
+        width: fit-content;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+    }
+    a:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <h1><%= post.title %></h1>
+    <p>Author: <span id="author"><%= post.author %></span> <% if(isMod){ %><button onclick="approve()">approve post</button><button onclick="promote()">promote user</button><% } %></p>
+    <p id="content"><%- content %></p>
+</body>
+</html>

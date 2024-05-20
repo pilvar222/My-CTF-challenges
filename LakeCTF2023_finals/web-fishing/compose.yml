@@ -1,0 +1,40 @@
+services:
+  redis:
+    image: "redis:7.2.4-alpine"
+    networks:
+      fishing_net:
+        ipv4_address: 172.16.238.30
+  fishing-web:
+    build: ./fishing-web/
+    ports:
+      - "12008:3000"
+    environment:
+      - FLAG=${FLAG}
+      - MODERATOR_USERNAME=${MODERATOR_USERNAME}
+      - MODERATOR_PASSWORD=${MODERATOR_PASSWORD}
+      - MODERATOR_IP=${MODERATOR_IP}
+      - MODERATOR_PASSWORD_HASH=${MODERATOR_PASSWORD_HASH}
+      - SECRET=${SECRET}
+    networks:
+      fishing_net:
+        ipv4_address: 172.16.238.20
+  fishing-bot:
+    build: ./fishing-bot/
+    shm_size: 2gb
+    ports:
+      - "12009:4000"
+    depends_on:
+      - redis
+    environment:
+      - MODERATOR_USERNAME=${MODERATOR_USERNAME}
+      - MODERATOR_PASSWORD=${MODERATOR_PASSWORD}
+    networks:
+      fishing_net:
+        ipv4_address: 172.16.238.10
+
+networks:
+  fishing_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.16.238.0/24"

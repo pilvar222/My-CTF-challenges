@@ -1,0 +1,178 @@
+<html>
+<!-- stolen from https://codepen.io/FJ_11/pen/ydvzzv -->
+<head>
+<style>
+html { font-size: 10px; }
+
+body { 
+  box-sizing: border-box;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://i.postimg.cc/3xpfQV5s/noise-bg.png);
+  background-color: #155;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.App {
+  display: grid;
+  grid-template-areas:
+    'title title'
+    'editor preview';
+  place-items: center;
+  gap: 20px;
+  padding: 50px 0;
+}
+
+#title {
+  grid-area: title;
+  color: #eee;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-size: 5rem;
+  text-shadow: 5px 5px #333;
+  margin-bottom: 4rem;
+}
+
+#editor,
+#preview {
+  width: 500px;
+  height: 600px;
+  padding: 24px 14px 14px 14px;
+  border: none;
+  border-radius: 3px;
+}
+
+#editor {
+  grid-area: editor;
+  background: #eee;
+  box-shadow: 5px 5px #448484;
+  float: left;
+  margin-right: 2rem;
+}
+
+#preview {
+  grid-area: preview;
+  background: #333;
+  color: white;
+  font-family: 'Molengo', sans-serif;
+  font-size: 1.2rem;
+  box-shadow: 5px 5px #448484;
+  overflow-y: auto;
+  float: right;
+  margin-left: 2rem;
+}
+
+a { color: #D6EFA3; }
+
+li { margin-left: 3rem; }
+
+blockquote {
+  margin-left: 2rem;
+  padding-left: 0.6rem;
+  border-left: 0.4rem solid grey;
+}
+
+@media only screen and (max-width: 1050px) {
+  .App {
+    grid-template-areas:
+      'title'
+      'editor'
+      'preview';
+  }
+
+  #editor,
+  #preview {
+    width: 90vw;
+    height: 400px;
+  }
+}
+.wrapper {
+    width: 100%;
+}
+
+</style>
+<meta name="referrer" content="no-referrer">
+<script>
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+
+function registerChange() {
+    changed = true
+    history.replaceState("","","?input="+encodeURIComponent(btoa(editor.value)))
+}
+
+async function update() {
+    out = fetch("/?input="+encodeURIComponent(btoa(editor.value)))
+    .then(response => response.text())
+    .then(data => {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(data, 'text/html');
+        var preview = doc.getElementById('preview');
+        document.getElementById('preview').innerHTML = preview.innerHTML;
+    });
+}
+
+async function mainloop() {
+    while (true) {
+        if (changed) {
+            try {
+                await update()
+                changed = false
+            } catch (e) {
+                console.error(e)
+            }
+        }
+        await sleep(300)
+    }
+}
+
+window.onload = () => {
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const input = urlParams.get('input');
+editor.value = input ? atob(input) : `Welcome to doc!
+
+doc is a *LakeCTF 2023 finals challenge!*.
+
+* Just type AsciiDoc source text into the *left* pane,
+* ...and the live preview appears in the *right* pane!
+asciidoc examples:
+* Links:
+** https://lakectf.epfl.ch/[LakeCTF^] is awesome!
+
+* Images:
++
+image:https://www.pikpng.com/pngl/m/18-183304_not-bad-meme-png-meme-not-bad-clipart.png[alt="fake png not bad",width=128,height=128]
+
+`
+registerChange()
+mainloop()
+}
+
+</script>
+</head>
+<body>
+<div className="App">
+        <h1 id="title">Asciidoc Previewer</h1>
+        <div class="wrapper">
+            <textarea id="editor" value="" onKeyUp="registerChange()" placeholder="Enter Asciidoc..."></textarea>
+            <div id="preview">
+                <%= output %>
+            </div>
+        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!-- stolen from https://codepen.io/fedeperin/pen/eYPrWqz -->
+<html>
+<head>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+body {
+	background: #FCE3BA;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+form {
+	overflow: hidden;
+	width: 450px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	border-radius: 7px;
+	box-shadow: 0 0 30px -10px;
+	background: #fff;
+}
+
+form button {
+	background: #F89267;
+	position: absolute;
+	border: none;
+	padding: 10px;
+	width: 25%;
+	color: #fff;
+	height: 100%;
+	font-size: 25px;
+	right: 0;
+	border-radius: 7px;
+	scale: .83;
+	transition: scale .3s ease;
+}
+
+form input {
+	width: 75%;
+	padding: 20px;
+	font-size: 25px;
+	outline: none;
+	border: none;
+}
+
+.progressbar {
+	position: absolute;
+	width: 100%;
+	bottom: -5px;
+	height: 5px;
+	background: #ddd;
+	transition: bottom .2s ease;
+}
+
+.progressbar .bar {
+	width: 0%;
+	height: 100%;
+	background: #f86767;
+}
+
+.submitted {
+	width: 100%;
+	height: 100%;
+	background: #111;
+	top: 100%;
+	left: 0;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 30px;
+	color: #eee;
+	transition: top .3s ease;
+}
+
+@keyframes push {
+	0%, 100% {
+		scale: 1;
+	}
+	
+	50% {
+		scale: .95;
+	}
+}
+
+@keyframes scaleWidth {
+	0% {
+		width: 25%;
+	}
+	
+	100% {
+		width: 100%;
+	}
+}
+
+@keyframes scaleBar {
+	0% {
+		width: 0%;
+	}
+	
+	100% {
+		width: 100%;
+	}
+}
+</style>
+<script>
+window.onload = async () => {
+const form = document.querySelector('form')
+const submitBtn = document.querySelector('form button')
+const progressbar = document.querySelector('.progressbar')
+const bar = document.querySelector('.progressbar .bar')
+const submitted = document.querySelector('.submitted')
+
+form.addEventListener('submit', async e => {
+	e.preventDefault()
+	out = await fetch("/submit", {
+        method: "POST",
+        body: new FormData(form)
+    })
+    .then(response => response.text())
+    submitted.innerHTML = out
+    console.log(out)
+	form.style.animation = 'linear .3s push'
+	
+	setTimeout(() => {
+		submitBtn.style.scale = '1'
+	}, 300)
+	
+	setTimeout(() => {
+		submitBtn.style.animation = 'ease .5s scaleWidth'
+	}, 900)
+	
+	setTimeout(() => {
+		progressbar.style.bottom = '0px'
+	}, 1200)
+	
+	setTimeout(() => {
+		submitBtn.style.width = '100%'
+		bar.style.animation = 'ease .7s scaleBar'
+	}, 1390)
+	
+	setTimeout(() => {
+		bar.style.width = '100%'
+		submitted.style.top = '0'
+	}, 2090)
+})
+}
+</script>
+</head>
+<body>
+<form class="input">
+    <input type="text" name="postId" autofocus="true" required placeholder="post id ([0-9a-f]{32})">
+	<button>Submit</button>
+	
+	<div class="progressbar">
+		<div class="bar"></div>
+	</div>
+	
+	<div class="submitted"></div>
+</form>
+</body>
+</html>
